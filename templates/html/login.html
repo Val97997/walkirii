@@ -1,0 +1,157 @@
+{% extends 'html/layout.html' %}
+
+
+{% block body  %}
+
+
+{% if request.user.is_authenticated %}
+<script>
+    window.location.href = '{% url "index" %}';
+</script>
+{% endif %}
+
+
+<html>
+<head>
+<link rel="stylesheet"  href="/static/css/connect.css"> 
+<link rel="stylesheet"  href="/static/css/login.css"> 
+<script src="https://kit.fontawesome.com/6aa7418ce8.js" crossorigin="anonymous"></script> 
+
+<style> 
+    html{
+        font-size:62.5%;
+    }
+    .connect{
+        height: 50rem;
+    }
+        .stickyheader{
+            height:12rem;
+            text-align:center;
+            vertical-align:center !important;
+            align-items: baseline !important;
+        }
+
+        h1{
+            font-size:3rem !important;
+        }
+        p, input{
+            font-size:1.6rem !important;
+        }
+        .form_submit{
+            font-size:1.5rem;
+            height:5rem;
+            width:15rem;
+        }
+        .forgot_password{
+            font-size:1.2rem !important;
+            
+        }
+        .login_main{
+            width:100%;
+            display:flex;
+            flex-wrap:nowrap;
+            flex-direction:row;
+            justify-content:center;
+            align-items:baseline;
+        }
+        .greeting{
+            padding:auto;
+        }
+        .register{
+            padding:0rem 1rem;
+        }
+         button{
+            color:white;
+            width:15rem;
+            height: 2.5rem;
+            background-color: var(--CouleurFondPage);
+            margin:5rem 1rem 0rem;
+          } 
+        
+</style>
+    
+
+</head>
+    <div class="login_main">
+        <section class="greeting">
+            <h2>Bienvenue, c'est un plaisir de vous revoir! </h2>
+            <p>Connectez-vous à votre compte en utilisant le formulaire. <br> N'hésitez pas à nous contacter pour assistance technique.</p>
+        </section>
+
+        <section class="connect">
+            <h1>Connectez-vous</h1>
+
+            <form class="account-form p-4 rounded" action="." method="post">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                <div class="alert alert-primary" role="alert">
+                    Erreur: Nom d'utilisateur ou mot de passe incorrect!
+                    <style>
+                        .alert{
+                            font-size:1.4rem;
+                        }
+                    </style>
+                </div>
+                {% endif %}    
+
+            <div class="field">
+                <p><i class="fa-solid fa-child-reaching"></i> Nom d'utilisateur ou e-mail</p>
+               {{ form.username }}
+            </div>
+
+            <div class="field">
+                <p><i class="fa-solid fa-lock"></i> Mot de passe</p>
+                {{ form.password }}
+            </div>
+
+            <button class="form_submit" type="submit">Connexion</button>
+            </form>
+            <a class="forgot_password" href="{% url "user:password_reset" %}">Mot de passe oublié ?</a>
+
+            <div class="register"><p>Voulez-vous créer un nouveau compte?   <a href="{% url "user:register" %}"> Inscrivez-vous ici</a></p></div>
+        </section>
+          
+        
+    </div>
+</main>
+         
+         <!-- Footer -->
+        <footer class="footer">
+            <div class='links'>
+        <div class='column'>
+            <div><i class="fa-regular fa-clock-rotate-left"></i><a href="">En savoir plus</a></div>
+            <div><i class="fa-regular fa-exclamation"></i><a href="">Conditions de vente</a></div>
+            <div><i class="fa-solid fa-question"></i><a href="">FAQ</a></div>
+        </div>
+
+    <div class='column'>
+      <div><i class="fa-solid fa-paper-plane"></i><a href="">Contact</a></div>
+      <div><i class="fa-sharp fa-solid fa-envelope-open-text"></i><a href="mailto:contact@walkirii.com">Email: contact@walkirii.com</a></div>
+      <div><i class="fa-sharp fa-solid fa-phone-volume"></i><a href="tel:+33-767-326698">Tel : +33 7 67 32 66 98</a></div>
+    
+    </div>
+    </div>
+        <div class='icons'>
+             <a href=''><i class="fa-brands fa-square-twitter fa-3x"></i></a>
+            <a href=''><i class="fa-brands fa-square-facebook fa-3x"></i></a>
+            <a href=''><i class="fa-brands fa-square-youtube fa-3x"></i></a>
+        </div>
+    <!-- Right -->
+  
+</footer>
+
+
+<!-- Footer -->
+            
+            
+        
+</body>
+    
+</html>
+
+
+
+
+
+{% endblock body  %}

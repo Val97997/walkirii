@@ -1,0 +1,26 @@
+html{
+    font-size:62.5%;
+}
+.containers{
+    margin:auto auto 0rem !important;
+}
+.row div{
+    width:20rem !important;
+}
+select{
+    width:20rem;
+}
+form, h4    , input, .tokens{
+    font-size:1.6rem !important;
+}
+ul{
+    z-index:10;
+    text-decoration:none !important;
+    list-style-type:none;           
+}   
+main{
+    height:150rem !important;
+}
+section{
+    height:120rem !important;
+}

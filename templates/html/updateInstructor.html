@@ -1,0 +1,387 @@
+{% extends 'html/layout.html' %}
+
+{% block body %} 
+
+<html>
+<head>
+<link rel="stylesheet"  href="/static/css/article.css"> 
+<link rel="stylesheet"  href="/static/css/update_instructor.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<script src="https://kit.fontawesome.com/6aa7418ce8.js" crossorigin="anonymous"></script> 
+<style>
+  html{
+    font-size:62.5%;
+  }
+    footer{
+      width:100%;
+    }
+  @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+.wrapper .button{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover{
+  width: 200px;
+}
+.wrapper .button .icon{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1):hover .icon{
+  background: #4267B2;
+}
+.wrapper .button:nth-child(2):hover .icon{
+  background: #1DA1F2;
+}
+.wrapper .button:nth-child(3):hover .icon{
+  background: #E1306C;
+}
+.wrapper .button:nth-child(4):hover .icon{
+  background: #333;
+}
+.wrapper .button:nth-child(5):hover .icon{
+  background: #ff0000;
+}
+.wrapper .button .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover .icon i{
+  color: #fff;
+}
+.wrapper .button span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1) span{
+  color: #4267B2;
+}
+.wrapper .button:nth-child(2) span{
+  color: #1DA1F2;
+}
+.wrapper .button:nth-child(3) span{
+  color: #E1306C;
+}
+.wrapper .button:nth-child(4) span{
+  color: #333;
+}
+.wrapper .button:nth-child(5) span{
+  color: #ff0000;
+}
+.profile{
+  background: transparent center/cover url("/media/mountains.jpg") no-repeat;
+  filter:grayscale(25%);
+  margin:2rem auto;
+  height: 100rem;
+  width: 80%;
+  color:white;
+  border-style: solid;
+  border-width: .3rem;
+  border-image: linear-gradient(90deg, var(--OrangeFume), var(--CouleurFondPage), var(--OrangeFume)) 1;
+  padding:10rem;
+}
+.thumbnail{
+  border-bottom: .5rem solid;
+  border-image:  linear-gradient(90deg, var(--CouleurFondPage), var(--OrangeFume), var(--CouleurFondPage)) 1;
+  margin:5rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.rounded_img{
+  border-radius: 50%;
+  height: 20rem;
+  width: 20rem;
+  margin:2rem auto;
+  filter: sepia(90%);
+}
+h2{
+  font-size: 3rem;
+  color:var(--CouleurClaireHeader)
+}
+h3{
+  font-size: 2rem;
+  color: var(--OrangeFume);
+  filter:saturate(45%)
+}
+.presentation{
+  font-size: 1.4rem;
+}
+.coordinates{
+  padding:2rem;
+  backdrop-filter: blur(.25rem);
+  margin:2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.thumbnail input, .coordinates input{
+  color:white;
+  font-weight:bold;
+  text-align: center;
+  width: 30rem;
+  height: 3rem;
+  margin:1.5rem auto;
+  font-size: 1.6rem;
+  background-color: var(--OrangeFume);
+}
+input::placeholder{
+  color: white;
+}
+.edit_profile{
+  text-align: center;
+  border:.2rem dotted white;
+  width: 25rem;
+  margin: auto;
+  background-color: var(--CouleurFondPage);
+}
+.profile_edit_link{
+  text-align: center;
+  text-decoration: none;
+  color:var(--OrangeFume);
+}
+textarea{
+  color:white;
+  font-weight:bold;
+  width: 50rem;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: var(--OrangeFume);
+}
+textarea::placeholder{
+  color: white;
+}
+.validate_changes{
+  height: 5rem;
+  width: 25rem;
+  font-size: 1.8rem;
+  border-radius: 1.2rem;
+  background-color: var(--CouleurFondPage);
+  opacity:70%;
+  color: white;
+  margin:auto;
+  text-align: center;
+}
+.avatar_pic  {
+  position: absolute;
+  filter:alpha(opacity=0);
+  opacity: 0;
+}
+.avatar_pic, label{
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  text-align: left;
+  padding: 10px;
+  width: 150px;
+  margin: 0;
+  left: 0;
+  position: relative;
+  text-align: center;
+  left: 7.35em;
+  top: 0.5em;
+  /* Decorative */
+  background: var(--OrangeFume);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+
+}
+
+.avatar-upload {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar-upload div {
+  margin-bottom: 10px;
+}
+
+.avatar-upload label {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.avatar-upload label:hover {
+  background-color: #2980b9;
+}
+
+/* Optional: To hide the default file input button */
+.avatar-upload input[type="file"] {
+  display: none;
+}
+</style>
+
+</head>
+
+<form method="POST" action="{% url 'user:edit' %}" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.errors }}
+  {{ form.birthday.errors }}
+
+
+  <div class="thumbnail">
+    <div class="form-check">
+      <input class="form-check-input"
+             type="checkbox"
+             id="clear-avatar"
+             name="clear_avatar">
+      <label class="form-check-label" for="clear-avatar">Effacer l'avatar.</label>
+
+      
+    </div>
+    <div>
+      {{ form.avatar }}
+    </div>
+
+    <!-- Use the Django form fields for first name and last name -->
+    <input required type="text" name="last_name" placeholder="Nom" value="{{ user.last_name }}">
+    <input required type="text" name="first_name" placeholder="Prénom" value="{{ user.first_name }}">
+
+  
+    {{ form.birthday }}
+   
+
+  <div class="coordinates">
+    <textarea name="presentation" id="id_presentation" cols="30" rows="10" placeholder="Une présentation rapide">{{ user.account.presentation }}</textarea>
+    
+    {{ form.email }}
+    {{ form.phone_number }}
+    {{ form.location }}
+
+    <input type="text" name="last_formation" placeholder="Dernière formation animée" value="{{ user.account.last_formation }}">
+
+    <button class="validate_changes" type="submit">Valider</button>
+  </div>
+</form>
+
+</section>
+
+
+
+    
+
+
+  <script>
+    ("[type=file]").on("change", function(){
+      // Name of file and placeholder
+      var file = this.files[0].name;
+      var dflt = $(this).attr("placeholder");
+      if($(this).val()!=""){
+        $(this).next().text(file);
+      } else {
+        $(this).next().text(dflt);
+      }
+    });
+  </script>
+  
+</section>
+
+        
+        
+          
+        
+           
+           
+       
+        
+           
+       
+    <!-- Right -->
+  
+
+</main>
+         
+         <!-- Footer -->
+        <footer class="footer">
+            <div class='links'>
+        <div class='column'>
+            <div><i class="fa-regular fa-clock-rotate-left"></i><a href="">En savoir plus</a></div>
+            <div><i class="fa-regular fa-exclamation"></i><a href="">Conditions de vente</a></div>
+            <div><i class="fa-solid fa-question"></i><a href="">FAQ</a></div>
+        </div>
+
+    <div class='column'>
+      <div><i class="fa-solid fa-paper-plane"></i><a href="">Contact</a></div>
+      <div><i class="fa-sharp fa-solid fa-envelope-open-text"></i><a href="">Email: contact@walkirii.com</a></div>
+      <div><i class="fa-sharp fa-solid fa-phone-volume"></i><a href="">Tel : 07 67 32 66 98</a></div>
+        
+      <div class="wrapper">
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-facebook-f"></i>
+           </div>
+           <span>Facebook</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-twitter"></i>
+           </div>
+           <span>Twitter</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-instagram"></i>
+           </div>
+           <span>Instagram</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-github"></i>
+           </div>
+           <span>Github</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-youtube"></i>
+           </div>
+           <span>YouTube</span>
+        </div>
+     </div>
+
+    </div>
+    </div>
+        
+    <!-- Right -->
+  
+</footer>
+
+
+<!-- Footer -->
+            
+            
+        
+</body>
+    
+</html>
+
+
+
+{% endblock body %}

@@ -1,0 +1,211 @@
+{% extends 'html/layout.html' %}
+
+{% block body %}
+
+
+
+
+<html>
+<head>
+<link rel="stylesheet"  href="static/css/index.css"> 
+<script src="https://kit.fontawesome.com/6aa7418ce8.js" crossorigin="anonymous"></script> 
+<style>
+    html{
+        font-size:62.5%;
+        width:100%;
+        }
+    .links {
+        margin-left: -200px;
+        color: white;
+        display: flex;
+        flex-wrap: no-wrap;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .resume{
+        font-size:1.2rem;
+    }
+    body{
+        width:100% !important;    
+    }
+    .container{
+        width:100% !important;
+        padding:0px !important;
+    }
+    .wrapper{
+    
+    }
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+    .wrapper .button{
+      display: inline-block;
+      height: 60px;
+      width: 60px;
+      float: left;
+      margin: 0 5px;
+      overflow: hidden;
+      background: #fff;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease-out;
+    }
+    .wrapper .button:hover{
+      width: 200px;
+    }
+    .wrapper .button .icon{
+      display: inline-block;
+      height: 60px;
+      width: 60px;
+      text-align: center;
+      border-radius: 50px;
+      box-sizing: border-box;
+      line-height: 60px;
+      transition: all 0.3s ease-out;
+    }
+    .wrapper .button:nth-child(1):hover .icon{
+      background: #4267B2;
+    }
+    .wrapper .button:nth-child(2):hover .icon{
+      background: #1DA1F2;
+    }
+    .wrapper .button:nth-child(3):hover .icon{
+      background: #E1306C;
+    }
+    .wrapper .button:nth-child(4):hover .icon{
+      background: #333;
+    }
+    .wrapper .button:nth-child(5):hover .icon{
+      background: #ff0000;
+    }
+    .wrapper .button .icon i{
+      font-size: 25px;
+      line-height: 60px;
+      transition: all 0.3s ease-out;
+    }
+    .wrapper .button:hover .icon i{
+      color: #fff;
+    }
+    .wrapper .button span{
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 60px;
+      margin-left: 10px;
+      transition: all 0.3s ease-out;
+    }
+    .wrapper .button:nth-child(1) span{
+      color: #4267B2;
+    }
+    .wrapper .button:nth-child(2) span{
+      color: #1DA1F2;
+    }
+    .wrapper .button:nth-child(3) span{
+      color: #E1306C;
+    }
+    .wrapper .button:nth-child(4) span{
+      color: #333;
+    }
+    .wrapper .button:nth-child(5) span{
+      color: #ff0000;
+    }
+</style>
+</head>
+
+    <section class="helico">
+        <h2>
+           Votre stage notre objectif
+        </h2>
+          <p>Walkirii vous accompagne dans votre processus de formation</p>
+      
+      
+    </section>
+    
+    <section class='presentation'>
+      <p class='headertext'>
+        Bienvenue! Chez Walkirii, notre plateforme a pour but de vous permettre de poster vos propositions de formations en tout genres au sein de la Pologne ! Que ce soit en maniement des armes, training médical, tutoriels de survie, nous vous proposons de poster toutes les informations pertinentes dans le formulaire ci-dessous.
+      </p>
+      
+      </section>
+   
+
+
+        <section class="duo-gallery">
+            <figure>
+                <img src="static\imgs\drapeau-francais.jpg" alt=""/>
+
+                <figcaption>Option 1</figcaption>
+            </figure>
+
+            <figure>
+                <img src="static\imgs\drapeau-francais.jpg" alt="" />
+
+                <figcaption>Option 2</figcaption>
+            </figure>
+        </section>
+
+        <section class="resume">
+            <div>
+                <h4>Vos séminaires préférés facilement accessibles</h4>
+                <i class="fa-solid fa-person-through-window"></i>
+                <p>
+                Des séminaires dédiés, menés par des professionnels d'expérience afin de parfaire vos skills maniement d'armes et d'alpinisme.
+                </p>
+            </div>
+            <div>
+                <h4>Entrainez vous en toute confiance</h4>
+                <i class="fa-solid fa-handshake"></i>
+                <p>
+                Des séminaires dédiés, menés par des professionnels d'expérience reconnus dans leur
+                domaine afin de parfaire vos skills maniement d'armes et d'alpinisme.
+                </p>
+            </div>
+            <div>
+                <h4>Rechercher, cliquez, inscrivez vous !</h4>
+                <i class="fa-solid fa-house-laptop"></i>
+                <p>
+                </p>
+            </div>
+
+        </section>
+        
+        
+    </main>
+        
+
+
+         
+                <!-- Footer -->
+                <footer class="footer">
+                  <div class='links'>
+              <div class='column'>
+                  <div><i class="fa-regular fa-clock-rotate-left"></i><a href="">En savoir plus</a></div>
+                  <div><i class="fa-regular fa-exclamation"></i><a href="">Conditions de vente</a></div>
+                  <div><i class="fa-solid fa-question"></i><a href="">FAQ</a></div>
+              </div>
+      
+          <div class='column'>
+            <div><i class="fa-solid fa-paper-plane"></i><a href="">Contact</a></div>
+            <div><i class="fa-sharp fa-solid fa-envelope-open-text"></i><a href="mailto:contact@walkirii.com">Email: contact@walkirii.com</a></div>
+            <div><i class="fa-sharp fa-solid fa-phone-volume"></i><a href="tel:+33-767-326698">Tel : +33 7 67 32 66 98</a></div>
+          
+          </div>
+          </div>
+              <div class='icons'>
+                   <a href=''><i class="fa-brands fa-square-twitter fa-3x"></i></a>
+                  <a href=''><i class="fa-brands fa-square-facebook fa-3x"></i></a>
+                  <a href=''><i class="fa-brands fa-square-youtube fa-3x"></i></a>
+              </div>
+          <!-- Right -->
+        
+      </footer>
+            
+            
+        
+</body>
+    
+</html>
+
+
+
+{% endblock body %}
+
+

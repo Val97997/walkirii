@@ -1,0 +1,35 @@
+html{
+    font-size:62.5%;
+  }
+  .stickyheader .stickbutton:first-child a{
+    text-align:center;
+    text-decoration:none;
+    color:white;
+  } 
+  .stickyheader .stickbutton:last-child{
+    border-right:none !important;  
+  }
+  .calendar{
+    border-right: 2px solid white !important;
+    border-left: 2px solid white !important;
+  }
+  .contacting{
+    border-right: 2px solid white !important;
+    border-left:  0px solid white !important;  
+  }
+    .shop{
+      border-right: 0px solid white !important;
+      border-left: 2px solid white !important;
+    }
+
+    .photo-gallery {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      
+      .small-photo {
+        width: 300px; /* Adjust the width as needed */
+        height: 300px; /* Adjust the height as needed */
+        object-fit: cover;
+        margin: 10px; /* Add spacing around photos */
+      }

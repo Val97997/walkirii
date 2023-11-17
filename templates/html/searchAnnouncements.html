@@ -1,0 +1,78 @@
+{% extends 'html/layout.html' %}
+
+{% block body %} 
+
+{% load static %}
+<link rel="stylesheet"  href="/static/css/style.css">
+<link rel="stylesheet"  href="/static/css/search_announcement.css"> 
+<style>
+  html{
+    font-size:62.5%;
+  }
+  .stickyheader .stickbutton:first-child a{
+    text-align:center;
+    text-decoration:none;
+    color:white;
+  } 
+  .stickyheader .stickbutton:last-child{
+    border-right:none !important;  
+  }
+  .calendar{
+    border-right: 2px solid white !important;
+    border-left: 2px solid white !important;
+  }
+  .contacting{
+    border-right: 2px solid white !important;
+    border-left:  0px solid white !important;  
+  }
+    .shop{
+      border-right: 0px solid white !important;
+      border-left: 2px solid white !important;
+    }
+</style>
+
+
+
+<div id="search-results"  style="color: white; margin-bottom: 25rem;">
+    {% if query %}
+      <h2 style='color: orange;'>Search Results for '{{ query }}'</h2>
+      {% if results %}
+        {% for announcement in results %}
+          <div class="announcement" style="margin:7.5rem;">
+            <h3><a href="{% url 'announcement:announcement_detail' announcement.id %}">{{ announcement.title }}</a></h3>
+            <p style="font-size: 1.5rem;"><strong>Author:</strong> {{ announcement.author.username }}</p>
+            <p style="font-size: 1.5rem;"><strong>Location:</strong> {{ announcement.GeographicalLocation }}</p>
+            <p style="font-size: 1.5rem;">{{ announcement.content }}</p>
+            <!-- Display a photo gallery with smaller photos -->
+            <div class="photo-gallery">
+              {% for photo in announcement.announcement_photos.all|slice:":3" %}
+                <img class="small-photo" src="{{ photo.image.url }}" alt="Announcement Photo">
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No announcements found.</p>
+      {% endif %}
+    {% endif %}
+  </div>
+  <style>
+
+    .photo-gallery {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .small-photo {
+      width: 300px; /* Adjust the width as needed */
+      height: 300px; /* Adjust the height as needed */
+      object-fit: cover;
+      margin: 10px; /* Add spacing around photos */
+    }
+    
+    </style>  
+
+  </main>
+
+  
+{% endblock body %}

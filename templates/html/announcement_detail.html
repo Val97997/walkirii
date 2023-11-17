@@ -1,0 +1,465 @@
+{% extends 'html/layout.html' %}
+
+{% block body %}
+<link rel="stylesheet"  href="/static/css/style.css">
+<link rel="stylesheet"  href="/static/js/announcement_detail.js">
+<link rel="stylesheet" href="/static/css/announcement_detail.css">
+<script>
+  function getTextarea(){
+    const input = document.querySelector('textarea').value.toString;
+    document.getElementById("inner_display").innerText = input;
+  }
+</script>
+<style>
+  a{
+    text-decoration:none !important;
+  }
+  html{
+    font-size:62.5%;
+  }
+  .stickyheader .stickbutton:first-child a{
+    text-align:center;
+    text-decoration:none;
+    color:white;
+  } 
+  .stickyheader .stickbutton:last-child{
+    border-right:none !important;  
+  }
+  .calendar{
+    border-right: 2px solid white !important;
+    border-left: 2px solid white !important;
+  }
+  .contacting{
+    border-right: 2px solid white !important;
+    border-left:  0px solid white !important;  
+  }
+    .shop{
+      border-right: 0px solid white !important;
+      border-left: 2px solid white !important;
+    }
+</style>
+<style>
+  .miniprofile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .miniprofile p {
+    margin-left: 10px; 
+  }
+  
+  .miniprofile_img {
+    width: 50px; /* Adjust the size of the avatar image */
+    height: 50px;
+    border-radius: 50%; /* Make the image round */
+  }
+
+  #menu__toggle {
+    opacity: 0;
+  }
+  
+  #menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+  }
+  #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+  }
+  #menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    left: 0;
+  }
+  
+  .menu__btn {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+  
+    width: 26px;
+    height: 26px;
+  
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+  
+    width: 100%;
+    height: 2px;
+  
+    background-color: #616161;
+  
+    transition-duration: .25s;
+  }
+  .menu__btn > span::before {
+    content: '';
+    top: -8px;
+  }
+  .menu__btn > span::after {
+    content: '';
+    top: 8px;
+  }
+  
+  .menu__box {
+    text-align:center;
+    margin-top:25rem;
+    display: block;   
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    left: -100%;
+  
+    width: 300px;
+    height: 50%;
+  
+    margin: 0;
+    padding: 80px 0;
+  
+    list-style: none;
+  
+    background-color: var(--OrangeFume);
+    box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+  
+    transition-duration: .25s;
+  }
+  
+  .menu__item {
+    display: block;
+    padding: 12px 24px;
+  
+    color: #333;
+  
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+  
+    text-decoration: none;
+  
+    transition-duration: .25s;
+  }
+  .menu__item:hover {
+    background-color: #CFD8DC;
+  }
+  .hamburger-menu{
+    Z-index:10;
+  }
+  .valk{
+    border:none !important;
+  }
+  li{
+    margin: 2rem auto;
+  }
+  li a{
+    height:5rem !important;
+    font-size:2rem; 
+  }
+</style>
+<style>
+  h1, p {
+    color: #fff;
+  }
+  .title{
+    color: #fff;
+    font-size:4rem;
+    border-bottom: 0.2rem solid orange;
+  }
+  .author{
+    font-size: 2.5rem;
+    margin-top: 5rem;
+  }
+  .location{
+    font-size: 2.2rem;
+    margin-bottom: 5rem;
+  }
+  .description{
+    font-size: 1.5rem;
+    line-height: 3rem;
+  }
+  .client_number::before{
+    font-style: normal !important;
+    font-weight: bolder;
+    content: "Nomber de clients max :    ";
+    color: white !important;
+  }
+  .client_number{
+    font-style: italic;
+    font-size: 1.8rem;
+    color: orange !important;
+  }
+  .duration{
+    font-style: italic;
+    font-size: 1.8rem;
+    color: orange !important;
+  }
+  .duration::before{
+    font-style: normal !important;
+    font-weight: bolder;
+    content: "Durée :    ";
+    color: white !important;
+  }
+  .food_option{
+    font-style: italic;
+    font-size: 1.8rem;
+    color: orange !important;
+  }
+  .food_option::before{
+    font-style: normal !important;
+    font-weight: bolder;
+    content: "Nourriture inclue :    ";
+    color: white !important;
+  }
+  .sleep_option{
+    font-style: italic;
+    font-size: 1.8rem;
+    color: orange !important;
+  }
+  .sleep_option::before{
+    font-style: normal !important;
+    font-weight: bolder;
+    content: "Dortoir inclus :    ";
+    color: white !important;
+  }
+  .from{
+    font-style: italic;
+    font-size: 1.8rem;
+    color: orange !important;
+  }
+  .from::before{
+    font-style: normal !important;
+    font-weight: bolder;
+    content: "Du :    ";
+    color: white !important;
+  }
+  .to{
+    font-style: italic;
+    font-size: 1.8rem;
+    color: orange !important;
+  }
+  .to::before{
+    font-style: normal !important;
+    font-weight: bolder;
+    content: "Au :    ";
+    color: white !important;
+  }
+  .price{
+    font-style: italic;
+    font-size: 1.8rem;
+    color: orange !important;
+  }
+  .price::before{
+    font-style: normal !important;
+    font-weight: bolder;
+    content: "Prix :    ";
+    color: white !important;
+  }
+  .comment{
+    display: flex;
+    flex-direction: column;
+  }
+  textarea{
+    font-size: 1.4rem;
+    height: 10rem;
+    width: 50rem;
+  }
+  .comment_submit{
+    height: 4rem;
+    width: 10rem;
+    background-color: orange;
+    margin: 2rem;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  .rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+</style>
+
+
+  <h1 class='title'>
+    {{ announcement.title }}  
+  </h1>
+  <p class="author"><strong>Author:</strong> {{ announcement.author.username }}
+    {% comment %} <div class="rate">
+      <input type="radio" id="star5" name="rate" value="5" />
+      <label for="star5" title="text">5 stars</label>
+      <input type="radio" id="star4" name="rate" value="4" />
+      <label for="star4" title="text">4 stars</label>
+      <input type="radio" id="star3" name="rate" value="3" />
+      <label for="star3" title="text">3 stars</label>
+      <input type="radio" id="star2" name="rate" value="2" />
+      <label for="star2" title="text">2 stars</label>
+      <input type="radio" id="star1" name="rate" value="1" />
+      <label for="star1" title="text">1 star</label>
+    </div> {% endcomment %}
+  </p>
+  <p class='location'><strong>Location:</strong> {{ announcement.GeographicalLocation }}</p>
+  <p class='description'>{{ announcement.content }}</p>
+  <p class="client_number">{{ announcement.clientNumMax }}</p>
+  <p class="duration">{{ announcement.duration }} {{ announcement.time_period }}</p>
+  <p class='food_option'>{{ announcement.food }}</p>
+  <p class='sleep_option'>{{ announcement.sleepOrganisation }}</p>
+  <p class='from'>{{ announcement.dates }}</p>
+  <p class="to">{{ announcement.to }}</p>
+  <p class='price'>{{ announcement.pricing }}</p>
+
+  <!-- Display all announcement photos -->
+  <div class="photo-gallery">
+    {% for photo in announcement.announcement_photos.all %}
+      <img class="small-photo" src="{{ photo.image.url }}" alt="Announcement Photo">
+    {% endfor %}
+  </div>
+
+
+
+  {% if user.is_authenticated %}
+  <form method="post" class="comment-form" action="{% url 'announcement:announcement_detail' announcement.id %}">
+      {% csrf_token %}
+      <label for="commentary">Commentaire:</label>
+      {{ comment_form.commentary }} 
+      {{ comment_form.commentary.errors }} 
+      <button class="comment_submit" type="submit">Publier</button>
+  </form>
+{% else %}
+  <div class="info-box">
+      <p>Seuls les utilisateurs connectés peuvent commenter.</p>
+      <a href="{% url 'login' %}">Connectez-vous ici</a>
+  </div>
+{% endif %}
+
+<div class="comments">
+  {% for comment in comments %}
+     {% if comment.moderated %}
+        <div class="comment">
+           <p>User: {{ comment.user.username }}</p>
+           <p>Comment: {{ comment.commentary }}</p>
+           <p>Date: {{ comment.created_at }}</p>
+     {% endif %}
+      {% if user.is_authenticated and user == comment.user %}
+          <button onclick="appearChoice()" type="button" class="btn btn-danger delete-button" data-toggle="modal" data-target="#confirmDeleteModal{{ comment.id }}" data-comment-id="{{ comment.id }}">
+              Delete
+          </button>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Modal for confirming comment deletion -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmation</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              Are you sure you want to delete this comment?
+          </div>
+          <div id="modal" class="modal-footer">
+              <button onclick="hideOptions()" type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button onclick="hideOptions()" type="submit" class="btn btn-danger">Yes</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  $(document).ready(function () {
+      // Listen for the confirmation modal's "Yes" button click event
+      $('.delete-button').on('click', function () {
+          var commentId = $(this).data('comment-id'); // Get the comment ID from the button's data attribute
+          $('#confirmDeleteModal' + commentId).modal('show'); // Show the corresponding modal
+      });
+  });
+</script>
+
+  
+
+
+
+
+
+
+  <!-- Display delete button for the author who is also an instructor -->
+  {% if user.is_authenticated and user == announcement.author %}
+    <form method="post" action="{% url 'announcement:delete_announcement' announcement.id %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Delete Announcement</button>
+
+      
+        
+      
+    </form>
+  {% endif %}
+
+   
+
+  <style>
+    .display_inner{
+      background-color: #fff;
+      height: 5rem; 
+      width: 50rem;
+    }
+    .photo-gallery {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .small-photo {
+      width: 300px; /* Adjust the width as needed */
+      height: 300px; /* Adjust the height as needed */
+      object-fit: cover;
+      margin: 10px; /* Add spacing around photos */
+    }
+  </style>
+
+</main>
+
+
+{% endblock body %}

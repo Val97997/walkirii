@@ -1,0 +1,12 @@
+
+{% autoescape off %}
+Hi {{ user.username }},
+
+Votre compte a bien été créé. Veuillez vérifier votre boîte mail.
+
+http://{{ domain }}{% url 'user:activate' uidb64=uid token=token %}
+
+
+Your walkirii team.
+
+{% endautoescape %}

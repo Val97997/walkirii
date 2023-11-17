@@ -1,0 +1,245 @@
+{% extends 'html/layout.html' %}
+
+{% block body %} 
+
+<html>
+<head>
+<link rel="stylesheet"  href="/static/css/article.css"> 
+<link rel="stylesheet"  href="/static/css/confirm_delete_account.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<script src="https://kit.fontawesome.com/6aa7418ce8.js" crossorigin="anonymous"></script> 
+<style>
+  html{
+    font-size:62.5%;
+  }
+    footer{
+      width:100%;
+    }
+  @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+.wrapper .button{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover{
+  width: 200px;
+}
+.wrapper .button .icon{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1):hover .icon{
+  background: #4267B2;
+}
+.wrapper .button:nth-child(2):hover .icon{
+  background: #1DA1F2;
+}
+.wrapper .button:nth-child(3):hover .icon{
+  background: #E1306C;
+}
+.wrapper .button:nth-child(4):hover .icon{
+  background: #333;
+}
+.wrapper .button:nth-child(5):hover .icon{
+  background: #ff0000;
+}
+.wrapper .button .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover .icon i{
+  color: #fff;
+}
+.wrapper .button span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1) span{
+  color: #4267B2;
+}
+.wrapper .button:nth-child(2) span{
+  color: #1DA1F2;
+}
+.wrapper .button:nth-child(3) span{
+  color: #E1306C;
+}
+.wrapper .button:nth-child(4) span{
+  color: #333;
+}
+.wrapper .button:nth-child(5) span{
+  color: #ff0000;
+}
+.title_section{
+  color: white;
+  background:  linear-gradient(90deg, var(--CouleurFondPage) 5%, var(--OrangeFume) 100%);
+  text-align: center;
+}
+.instructor_apply{
+  border:0.2rem solid var(--CouleurClaireHeader);
+  border-radius: 1rem;
+  padding:2rem;
+}
+.text_content{
+  color:white;
+  font-size: 1.5rem;
+  margin:0rem 2rem;
+}
+input{
+  color: white;
+  height: 2.5rem;
+  width: 30rem;
+  font-size: 1.6rem;
+  background-color: var(--OrangeFume);
+  margin:1rem 2rem;
+}
+input::placeholder{
+  color: white;
+}
+.input_wrapper{
+  display: flex;
+  width: 100%;
+  height: 50rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.file_choose::file-selector-button{
+  color:white;
+  background: linear-gradient(90deg, var(--CouleurFondPage) 35%, var(--OrangeFume) 100%);
+}
+.file_choose{
+  background-color: transparent;
+  color: var(--OrangeFume);
+}
+.form_submit{
+  height: 5rem;
+  width: 10rem;
+  font-size: 1.6rem;
+  color: white;
+  background-color: black;
+  border-radius: .5rem;
+  border: .1rem solid white;
+}
+.block{
+  height: 50rem;
+  text-align: center;
+}
+.block h2{
+  color:white;
+  font-size:2.8rem;
+}
+.block p{
+  color: white;
+  font-size: 2rem;
+}
+.block button{
+  height:3rem;
+  width: 10rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<section class="block">
+
+  <h2>Confirmation</h2>
+  <p>Are you sure you want to delete your account?</p>
+  <form method="post">
+  {% csrf_token %}
+  <button type="submit">Delete Account</button>
+
+</form>
+
+</section>
+
+         
+    <!-- Right -->
+  
+
+</main>
+         
+         <!-- Footer -->
+        <footer class="footer">
+            <div class='links'>
+        <div class='column'>
+            <div><i class="fa-regular fa-clock-rotate-left"></i><a href="">En savoir plus</a></div>
+            <div><i class="fa-regular fa-exclamation"></i><a href="">Conditions de vente</a></div>
+            <div><i class="fa-solid fa-question"></i><a href="">FAQ</a></div>
+        </div>
+
+    <div class='column'>
+      <div><i class="fa-solid fa-paper-plane"></i><a href="">Contact</a></div>
+      <div><i class="fa-sharp fa-solid fa-envelope-open-text"></i><a href="">Email: contact@walkirii.com</a></div>
+      <div><i class="fa-sharp fa-solid fa-phone-volume"></i><a href="">Tel : 07 67 32 66 98</a></div>
+        
+      <div class="wrapper">
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-facebook-f"></i>
+           </div>
+           <span>Facebook</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-twitter"></i>
+           </div>
+           <span>Twitter</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-instagram"></i>
+           </div>
+           <span>Instagram</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-github"></i>
+           </div>
+           <span>Github</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-youtube"></i>
+           </div>
+           <span>YouTube</span>
+        </div>
+     </div>
+
+    </div>
+    </div>
+        
+    <!-- Right -->
+  
+</footer>
+
+
+<!-- Footer -->
+            
+            
+        
+</body>
+    
+</html>
+
+
+
+{% endblock body %}

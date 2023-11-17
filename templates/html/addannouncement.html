@@ -1,0 +1,651 @@
+{% extends 'html/layout.html' %}
+{% block body %} 
+
+
+
+{% if not request.user.is_authenticated %}
+<script>
+    window.location.href = '{% url "user:login" %}';
+</script>
+{% endif %}
+
+<html>
+<head>
+<link rel="stylesheet"  href="/static/css/style.css"> 
+<link rel="stylesheet" href="/static/scss/app.scss">
+<link rel="stylesheet" href="/static/css/addannouncement.css">
+<script src="https://kit.fontawesome.com/6aa7418ce8.js" crossorigin="anonymous"></script> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"> 
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&family=Fredoka+One&display=swap");
+  :root {
+    --CouleurFonceeHeader:#CBAB6F;
+    --CouleurClaireHeader:#E0CDA9;
+    --CouleurFondPage:#191B32;
+    --OrangeFume:#CC5500;
+    --VioletAnalogue: #241932;
+  }
+  
+  html {
+    margin: none;
+  }
+  
+  body {
+    position: relative;
+    width: 100% !important;
+    background: radial-gradient(var(--VioletAnalogue) 40%, var(--CouleurFondPage) 50%);
+    margin: 0px;
+  }
+  
+  .valk:hover {
+    -webkit-animation: expand 0.8s;
+            animation: expand 0.8s;
+    -webkit-animation-iteration-count: 4;
+            animation-iteration-count: 4;
+  }
+  
+  @-webkit-keyframes expand {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  
+  @keyframes expand {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    50% {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  .navbutton:hover {
+    -webkit-animation: button_expand 0.5s;
+            animation: button_expand 0.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+  }
+  
+  @-webkit-keyframes button_expand {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    100% {
+      -webkit-transform: scale(1.05);
+              transform: scale(1.05);
+    }
+  }
+  
+  @keyframes button_expand {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    100% {
+      -webkit-transform: scale(1.05);
+              transform: scale(1.05);
+    }
+  }
+  .helico {
+    width: 100%;
+    background-color: var(--CouleurFondPage);
+    position: relative;
+    top: 0vh;
+    padding: 0;
+    Z-index: 1;
+    text-align: center;
+    line-height: 10rem;
+    padding-top: 10vh;
+    margin: auto 0px;
+  }
+  
+  .helico p {
+    color: white;
+    font-size: 5vh;
+  }
+  
+  .helico h2, .helico .h2 {
+    position: relative;
+    font-size: 10vh;
+    text-align: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    border-bottom: 10px solid;
+    -o-border-image: linear-gradient(to right, white 30%, red 55%) 1;
+       border-image: -webkit-gradient(linear, left top, right top, color-stop(30%, white), color-stop(55%, red)) 1;
+       border-image: linear-gradient(to right, white 30%, red 55%) 1;
+    text-transform: uppercase;
+  }
+  
+  .lang {
+    position: fixed;
+    top: 3vh;
+    right: 1vh;
+    Z-index: 2;
+  }
+  
+  .lang a img {
+    height: 25px;
+    width: 50px;
+    border: 0.5px solid white;
+  }
+  
+  .foot {
+    background-color: var(--OrangeFume) !important;
+    color: white !important;
+  }
+  
+  .row, .container {
+    padding: 20px;
+  }
+  
+  @media screen and (max-width: 991px) {
+    .dropdown-menu {
+      text-align: center !important;
+      margin: auto;
+    }
+    .dropdown-item {
+      text-align: center !important;
+    }
+  }
+  header {
+    position: relative;
+    margin: 0 auto;
+  }
+  
+  .presentation {
+    margin-bottom: 2rem;
+  }
+  
+  .frontheader {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    background-color: var(--CouleurFondPage);
+    height: 100px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .frontheader a {
+    text-decoration: none;
+    background-color: var(--CouleurFondPage);
+    color: white;
+    padding: 5px 15px;
+  }
+  
+  .frontheader a:first-child, .frontheader a:last-child {
+    border-radius: 50px;
+    width: 120px;
+  }
+  
+  .frontheader a:nth-child(2) {
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    width: 250px;
+  }
+  
+  .frontheader a:nth-child(4) {
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    width: 250px;
+  }
+  
+  .frontheader a:first-child:hover, .frontheader a:nth-child(2):hover, .frontheader a:nth-child(4):hover, .frontheader a:nth-child(5):hover {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(var(--OrangeFume)), to(var(--CouleurFondPage)));
+    background-image: linear-gradient(var(--OrangeFume), var(--CouleurFondPage));
+  }
+  
+  .frontheader .fa-user, .frontheader .fa-pen {
+    padding-right: 5px;
+  }
+  
+  .frontheader .fa-flag, .frontheader .fa-scroll {
+    padding-left: 5px;
+  }
+  
+  .stickyheader {
+    z-index: 2;
+    text-align: center;
+    background-image: -webkit-gradient(linear, right top, left top, from(var(--OrangeFume)), to(var(--CouleurFondPage)));
+    background-image: linear-gradient(to left, var(--OrangeFume), var(--CouleurFondPage));
+    position: sticky;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: no-wrap;
+        flex-wrap: no-wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  
+  .stickyheader .stickbutton {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    width: 150px;
+    height: 30px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .stickyheader .stickbutton:hover {
+    color: var(--OrangeFume);
+    border-bottom: 2px solid white;
+  }
+  
+  .stickyheader .stickbutton:nth-child(3) {
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+  }
+  
+  .stickyheader .stickbutton:nth-child(2) {
+    border-left: 2px solid white;
+  }
+  
+  .stickyheader .stickbutton:nth-child(4) {
+    border-right: 2px solid white;
+  }
+  
+  @-webkit-keyframes expand_input {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    100% {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+    }
+  }
+  
+  @keyframes expand_input {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    100% {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1);
+    }
+  }
+  .headertext {
+    margin: auto;
+    color: white;
+    text-align: center !important;
+    width: 80%;
+    font-size: 2rem;
+  }
+  .wrapper{
+    
+  }
+      @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+  .wrapper .button{
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    float: left;
+    margin: 0 5px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease-out;
+  }
+  .wrapper .button:hover{
+    width: 200px;
+  }
+  .wrapper .button .icon{
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    border-radius: 50px;
+    box-sizing: border-box;
+    line-height: 60px;
+    transition: all 0.3s ease-out;
+  }
+  .wrapper .button:nth-child(1):hover .icon{
+    background: #4267B2;
+  }
+  .wrapper .button:nth-child(2):hover .icon{
+    background: #1DA1F2;
+  }
+  .wrapper .button:nth-child(3):hover .icon{
+    background: #E1306C;
+  }
+  .wrapper .button:nth-child(4):hover .icon{
+    background: #333;
+  }
+  .wrapper .button:nth-child(5):hover .icon{
+    background: #ff0000;
+  }
+  .wrapper .button .icon i{
+    font-size: 25px;
+    line-height: 60px;
+    transition: all 0.3s ease-out;
+  }
+  .wrapper .button:hover .icon i{
+    color: #fff;
+  }
+  .wrapper .button span{
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 60px;
+    margin-left: 10px;
+    transition: all 0.3s ease-out;
+  }
+  .wrapper .button:nth-child(1) span{
+    color: #4267B2;
+  }
+  .wrapper .button:nth-child(2) span{
+    color: #1DA1F2;
+  }
+  .wrapper .button:nth-child(3) span{
+    color: #E1306C;
+  }
+  .wrapper .button:nth-child(4) span{
+    color: #333;
+  }
+  .wrapper .button:nth-child(5) span{
+    color: #ff0000;
+  }
+  .hide_arrows::-webkit-outer-spin-button,
+  .hide_arrows::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+  }
+  .post-button{
+    margin-top:2rem;
+  }
+</style>
+
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+    $("#datepicker").datepicker({
+      dateFormat: "yyyy-mm-dd"
+    })
+    $("#datepicker").datepicker({
+      dayNamesMin: ["Lu", "Ma", "Mer", "Je", "Ven", "Sa", "Dim"]
+    })
+    let dayNamesMin = $( "#datepicker" ).datepicker( "option", "dayNamesMin" );
+    $( "#datepicker" ).datepicker( "option", "dayNamesMin", [ "Lu", "Ma", "Mer", "Je", "Ven", "Sa", "Dim" ] );
+
+     $( "#datepicker" ).datepicker({
+       closeText: "Close"
+     })
+     $( "#datepicker" ).datepicker({
+       showButtonPanel: true
+     });
+     let showButtonPanel = $( "#datepicker" ).datepicker( "option", "showButtonPanel" );
+     $( "#datepicker" ).datepicker( "option", "showButtonPanel", true );
+     
+ } );
+ $(function() {
+     $( "#datepicker1" ).datepicker();
+    $("#datepicker1").datepicker({
+      dateFormat: "yyyy-mm-dd"
+    })
+    $("#datepicker1").datepicker({
+      dayNamesMin1: ["Lu", "Ma", "Mer", "Je", "Ven", "Sa", "Dim"]
+    })
+    let dayNamesMin = $( "#datepicker1" ).datepicker( "option", "dayNamesMin" );
+    $( "#datepicker1" ).datepicker( "option", "dayNamesMin", [ "Lu", "Ma", "Mer", "Je", "Ven", "Sa", "Dim" ] );
+
+     $( "#datepicker1" ).datepicker({
+       closeText: "Close"
+     })
+     $( "#datepicker1" ).datepicker({
+       showButtonPanel: true
+     });
+     let showButtonPanel = $( "#datepicker1" ).datepicker( "option", "showButtonPanel" );
+     $( "#datepicker1" ).datepicker( "option", "showButtonPanel", true );
+ });
+</script>
+<script>
+  let i = 0;
+  function timeIncrease() {
+    document.getElementById('time').value = ++i;
+  }
+  function timeDecrease() {
+    if(document.getElementById('time').value > 0){
+      document.getElementById('time').value = --i;
+    }else if (document.getElementById('time').value<=0){
+      window.alert('Value cant be negative')
+    }
+  }
+</script>
+<style>
+
+</style>
+      
+              	<section class="helico">
+	          		  <h2>
+	          		     Votre stage notre objectif
+	          	  	</h2>
+	          		    <p>Walkirii vous accompagne dans votre processus de formation</p>
+	          		
+	          		
+	          	  </section>
+	          	  
+	          	  <section class='presentation'>
+	          	    <p class='headertext'>
+	          	      Bienvenue! Chez Walkirii, notre plateforme a pour but de vous permettre de poster vos propositions de formations en tout genres au sein de la Pologne ! Que ce soit en maniement des armes, training médical, tutoriels de survie, nous vous proposons de poster toutes les informations pertinentes dans le formulaire ci-dessous.
+	          	    </p>
+	          	    
+	          	    
+	          	  </section>
+		            
+	
+<form class="formulaire" id="form1" name="form1" action="{% url 'announcement:create' %}" method="POST" enctype="multipart/form-data">
+
+  {% csrf_token %}
+
+  {% for field in form %}
+    {% if field.errors %}
+        <div class="form-errors">
+            <strong>{{ field.label_tag }}</strong>
+            <ul>
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+  {% endfor %}
+  
+  <div class='fields_one_four'>
+      <h3>Nom</h3>
+      {{ form.name }}
+      
+      <h3 class='formfield'>Titre de la session</h3>
+      {{ form.title }}
+      <h3 class='formfield'>Intitulé</h3>
+      {{ form.catchTitle }}
+      <h3 class='formfield'>Description</h3>
+      <div class="flip-box">
+          <div class="flip-box-inner">
+              <div class="flip-box-front">
+                  <h2>Survolez pour révéler le champ.</h2>
+              </div>
+              <div class="flip-box-back">
+                  {{ form.content }}
+              </div>
+          </div>
+      </div>
+      <h3 class='formfield'>Position géographique</h3>
+      {{ form.GeographicalLocation }}
+  </div>
+  
+  <div class='fields_numbers'>
+    <h3>Nombre de clients</h3>
+    <input type="number" name="{{ form.clientNumMax.name }}" value="{{ form.clientNumMax.value }}" min="0" required>
+</div>
+
+  
+  <div class='duration'>
+      <label for="time">Durée</label>
+      {{ form.duration }}
+      {{ form.time_period }}
+  </div>
+  
+  <div class='radio_food'>
+      <h3>Nourriture comprise.</h3>
+      <div class="radio-buttons">
+          {{ form.food }}
+      </div>
+  </div>
+  
+  <div class='radio_sleep'>
+      <h3>Hébergement nocturne.</h3>
+      <div class="radio-buttons">
+          {{ form.sleepOrganisation }}
+      </div>
+  </div>
+  
+  <div class='date_price'>
+      <p>Dates: <input id="datepicker" name="dates" required> à <input id="datepicker1" name="to" required></p>
+  </div>
+  
+  <div class='pricing'>
+    <h3>Prix</h3>
+    <input type="number" name="{{ form.pricing.name }}" value="{{ form.pricing.value }}" min="0" required>
+    Euros
+</div>
+
+  
+<div class="last">
+  <h3>Gallerie Import</h3>
+  <input type="file" name="{{ form.photos.name }}" accept=".jpg, .jpeg, .png" multiple>
+  <button class="post-button btn effect01" method="POST" type="submit" value="Submit">
+    <span>Envoyer</span>
+  </button>
+</div>
+
+
+</form>
+
+              
+                  </div>
+                  
+                  <style>
+                    .effect01{
+                      background-color: var(--OrangeFume);
+                      height:5rem;
+                      width:10rem;
+                      font-size:1.8rem;
+                    }
+                    .effect01:hover{
+                      color:white;
+                      background-color:black;
+                    }
+                  </style>
+              
+                  
+                  
+                  <style>
+                    form{
+                      font-size: 150% !important;
+                    }
+                  </style>
+		            
+          
+
+          
+        </main>
+         
+          <!-- Footer -->
+          <footer class="footer">
+            <div class='links'>
+        <div class='column'>
+            <div><i class="fa-regular fa-clock-rotate-left"></i><a href="">En savoir plus</a></div>
+            <div><i class="fa-regular fa-exclamation"></i><a href="">Conditions de vente</a></div>
+            <div><i class="fa-solid fa-question"></i><a href="">FAQ</a></div>
+        </div>
+
+    <div class='column'>
+      <div><i class="fa-solid fa-paper-plane"></i><a href="">Contact</a></div>
+      <div><i class="fa-sharp fa-solid fa-envelope-open-text"></i><a href="">Email: contact@walkirii.com</a></div>
+      <div><i class="fa-sharp fa-solid fa-phone-volume"></i><a href="">Tel : 07 67 32 66 98</a></div>
+        
+      <div class="wrapper">
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-facebook-f"></i>
+           </div>
+           <span>Facebook</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-twitter"></i>
+           </div>
+           <span>Twitter</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-instagram"></i>
+           </div>
+           <span>Instagram</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-github"></i>
+           </div>
+           <span>Github</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-youtube"></i>
+           </div>
+           <span>YouTube</span>
+        </div>
+     </div>
+
+    </div>
+    </div>
+        
+    <!-- Right -->
+  
+</footer>
+            
+            
+        
+</body>
+
+</html>
+
+{% endblock body %}

@@ -1,0 +1,274 @@
+{% extends 'html/layout.html' %}
+
+{% block body %} 
+
+<html>
+<head>
+<link rel="stylesheet"  href="/static/css/article.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<link rel="stylesheet"  href="/static/css/profile_instructor.css"> 
+<script src="https://kit.fontawesome.com/6aa7418ce8.js" crossorigin="anonymous"></script> 
+<style>
+  html{
+    font-size:62.5%;
+  }
+    footer{
+      width:100%;
+    }
+  @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+.wrapper .button{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover{
+  width: 200px;
+}
+.wrapper .button .icon{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1):hover .icon{
+  background: #4267B2;
+}
+.wrapper .button:nth-child(2):hover .icon{
+  background: #1DA1F2;
+}
+.wrapper .button:nth-child(3):hover .icon{
+  background: #E1306C;
+}
+.wrapper .button:nth-child(4):hover .icon{
+  background: #333;
+}
+.wrapper .button:nth-child(5):hover .icon{
+  background: #ff0000;
+}
+.wrapper .button .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover .icon i{
+  color: #fff;
+}
+.wrapper .button span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1) span{
+  color: #4267B2;
+}
+.wrapper .button:nth-child(2) span{
+  color: #1DA1F2;
+}
+.wrapper .button:nth-child(3) span{
+  color: #E1306C;
+}
+.wrapper .button:nth-child(4) span{
+  color: #333;
+}
+.wrapper .button:nth-child(5) span{
+  color: #ff0000;
+}
+.profile{
+  background: transparent center/cover url("/media/mountains.jpg") no-repeat;
+  filter:grayscale(25%);
+  margin:2rem auto;
+  height: 100rem;
+  width: 80%;
+  color:white;
+  border-style: solid;
+  border-width: .3rem;
+  border-image: linear-gradient(90deg, var(--OrangeFume), var(--CouleurFondPage), var(--OrangeFume)) 1;
+  padding:10rem;
+}
+.thumbnail{
+  border-bottom: .5rem solid;
+  border-image:  linear-gradient(90deg, var(--CouleurFondPage), var(--OrangeFume), var(--CouleurFondPage)) 1;
+  margin:5rem auto;
+  text-align: center;
+}
+.rounded_img{
+  border-radius: 50%;
+  height: 20rem;
+  width: 20rem;
+  margin:2rem auto;
+  filter: sepia(90%);
+}
+h2{
+  font-size: 3rem;
+  color:var(--CouleurClaireHeader)
+}
+h3{
+  font-size: 2rem;
+  color: var(--OrangeFume);
+  filter:saturate(45%)
+}
+.presentation{
+  font-size: 1.4rem;
+}
+.coordinates{
+  padding:2rem;
+  backdrop-filter: blur(.25rem);
+  margin:2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+h4{
+  margin: 1.5rem auto;
+}
+.edit_profile{
+  text-align: center;
+  border:.2rem dotted white;
+  width: 25rem;
+  margin: auto;
+  background-color: var(--CouleurFondPage);
+}
+.profile_edit_link{
+  text-align: center;
+  text-decoration: none;
+  color:var(--OrangeFume);
+}
+</style>
+</head>
+
+<section class="profile">
+  <div class="edit_profile">
+    <a class='profile_edit_link' href="{% url 'user:edit' %}" alt=""><i class="fa-solid fa-pencil"></i> Modifiez votre profil</a>
+  </div>
+  
+  <div class="thumbnail">
+    {% if user.account.avatar %}
+    <div class="miniprofile">
+      <img class="miniprofile_img"
+           src="{{ user.account.avatar.url }}"
+           alt="{{ user.username }}'s avatar">
+      
+    </div>
+  {% elif not user.account.avatar %}
+    <!-- Default avatar image -->
+    <div class="miniprofile">
+      <img class="miniprofile_img" src="/media/avatar.jpg" alt="Default Avatar">
+     
+    </div>
+  {% endif %}
+  <h3>Instructor</h3>
+  <div>
+    <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+
+    
+    <div class="coordinates">
+        <h4>Une présentation rapide</h4>
+        <h3>{{ user.account.presentation }}</h3>
+        <h4>Numéro de contact</h4>
+        <h4>{{ user.account.phone_number }}</h4>
+        <h4>Email de contact</h4>
+        <h4>{{ user.email }}</h4>
+        <h4>Pays</h4>
+        <h4>{{ user.account.location }}</h4>
+        <h4>Dernière formation animée</h4>
+        <h4>{{ user.account.last_formation }}</h4>
+    </div>
+</div>
+
+
+        
+        
+          
+        
+           
+           
+       
+        
+           
+       
+    <!-- Right -->
+  
+
+</main>
+         
+         <!-- Footer -->
+        <footer class="footer">
+            <div class='links'>
+        <div class='column'>
+            <div><i class="fa-regular fa-clock-rotate-left"></i><a href="">En savoir plus</a></div>
+            <div><i class="fa-regular fa-exclamation"></i><a href="">Conditions de vente</a></div>
+            <div><i class="fa-solid fa-question"></i><a href="">FAQ</a></div>
+        </div>
+
+    <div class='column'>
+      <div><i class="fa-solid fa-paper-plane"></i><a href="">Contact</a></div>
+      <div><i class="fa-sharp fa-solid fa-envelope-open-text"></i><a href="">Email: contact@walkirii.com</a></div>
+      <div><i class="fa-sharp fa-solid fa-phone-volume"></i><a href="">Tel : 07 67 32 66 98</a></div>
+        
+      <div class="wrapper">
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-facebook-f"></i>
+           </div>
+           <span>Facebook</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-twitter"></i>
+           </div>
+           <span>Twitter</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-instagram"></i>
+           </div>
+           <span>Instagram</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-github"></i>
+           </div>
+           <span>Github</span>
+        </div>
+        <div class="button">
+           <div class="icon">
+              <i class="fab fa-youtube"></i>
+           </div>
+           <span>YouTube</span>
+        </div>
+     </div>
+
+    </div>
+    </div>
+        
+    <!-- Right -->
+  
+</footer>
+
+
+<!-- Footer -->
+            
+            
+        
+</body>
+    
+</html>
+
+
+
+{% endblock body %}

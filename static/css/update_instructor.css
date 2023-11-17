@@ -1,0 +1,228 @@
+html{
+    font-size:62.5%;
+  }
+    footer{
+      width:100%;
+    }
+  @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+.wrapper .button{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  float: left;
+  margin: 0 5px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover{
+  width: 200px;
+}
+.wrapper .button .icon{
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  border-radius: 50px;
+  box-sizing: border-box;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1):hover .icon{
+  background: #4267B2;
+}
+.wrapper .button:nth-child(2):hover .icon{
+  background: #1DA1F2;
+}
+.wrapper .button:nth-child(3):hover .icon{
+  background: #E1306C;
+}
+.wrapper .button:nth-child(4):hover .icon{
+  background: #333;
+}
+.wrapper .button:nth-child(5):hover .icon{
+  background: #ff0000;
+}
+.wrapper .button .icon i{
+  font-size: 25px;
+  line-height: 60px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:hover .icon i{
+  color: #fff;
+}
+.wrapper .button span{
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 60px;
+  margin-left: 10px;
+  transition: all 0.3s ease-out;
+}
+.wrapper .button:nth-child(1) span{
+  color: #4267B2;
+}
+.wrapper .button:nth-child(2) span{
+  color: #1DA1F2;
+}
+.wrapper .button:nth-child(3) span{
+  color: #E1306C;
+}
+.wrapper .button:nth-child(4) span{
+  color: #333;
+}
+.wrapper .button:nth-child(5) span{
+  color: #ff0000;
+}
+.profile{
+  background: transparent center/cover url("/media/mountains.jpg") no-repeat;
+  filter:grayscale(25%);
+  margin:2rem auto;
+  height: 100rem;
+  width: 80%;
+  color:white;
+  border-style: solid;
+  border-width: .3rem;
+  border-image: linear-gradient(90deg, var(--OrangeFume), var(--CouleurFondPage), var(--OrangeFume)) 1;
+  padding:10rem;
+}
+.thumbnail{
+  border-bottom: .5rem solid;
+  border-image:  linear-gradient(90deg, var(--CouleurFondPage), var(--OrangeFume), var(--CouleurFondPage)) 1;
+  margin:5rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.rounded_img{
+  border-radius: 50%;
+  height: 20rem;
+  width: 20rem;
+  margin:2rem auto;
+  filter: sepia(90%);
+}
+h2{
+  font-size: 3rem;
+  color:var(--CouleurClaireHeader)
+}
+h3{
+  font-size: 2rem;
+  color: var(--OrangeFume);
+  filter:saturate(45%)
+}
+.presentation{
+  font-size: 1.4rem;
+}
+.coordinates{
+  padding:2rem;
+  backdrop-filter: blur(.25rem);
+  margin:2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.thumbnail input, .coordinates input{
+  color:white;
+  font-weight:bold;
+  text-align: center;
+  width: 30rem;
+  height: 3rem;
+  margin:1.5rem auto;
+  font-size: 1.6rem;
+  background-color: var(--OrangeFume);
+}
+input::placeholder{
+  color: white;
+}
+.edit_profile{
+  text-align: center;
+  border:.2rem dotted white;
+  width: 25rem;
+  margin: auto;
+  background-color: var(--CouleurFondPage);
+}
+.profile_edit_link{
+  text-align: center;
+  text-decoration: none;
+  color:var(--OrangeFume);
+}
+textarea{
+  color:white;
+  font-weight:bold;
+  width: 50rem;
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: var(--OrangeFume);
+}
+textarea::placeholder{
+  color: white;
+}
+.validate_changes{
+  height: 5rem;
+  width: 25rem;
+  font-size: 1.8rem;
+  border-radius: 1.2rem;
+  background-color: var(--CouleurFondPage);
+  opacity:70%;
+  color: white;
+  margin:auto;
+  text-align: center;
+}
+.avatar_pic  {
+  position: absolute;
+  filter:alpha(opacity=0);
+  opacity: 0;
+}
+.avatar_pic, label{
+  border: 1px solid #CCC;
+  border-radius: 3px;
+  text-align: left;
+  padding: 10px;
+  width: 150px;
+  margin: 0;
+  left: 0;
+  position: relative;
+  text-align: center;
+  left: 7.35em;
+  top: 0.5em;
+  /* Decorative */
+  background: var(--OrangeFume);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+
+}
+
+.avatar-upload {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar-upload div {
+  margin-bottom: 10px;
+}
+
+.avatar-upload label {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.avatar-upload label:hover {
+  background-color: #2980b9;
+}
+
+/* Optional: To hide the default file input button */
+.avatar-upload input[type="file"] {
+  display: none;
+}
