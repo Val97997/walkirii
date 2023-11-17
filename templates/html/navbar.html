@@ -156,7 +156,6 @@
 </style>
 <header>
   <div class='frontheader'>
-
     <div class="hamburger-menu">
       <input id="menu__toggle" type="checkbox" />
       <label class="menu__btn" for="menu__toggle">
@@ -181,9 +180,26 @@
         {% endwith %}
         </li>
         <li><a href='{% url 'announcement:announcements' %}' class='navbutton'>Rechercher une annonce <i class="fa-solid fa-scroll"></i></a></li>
+        <li >
+          {% if request.user.is_authenticated %}
+          <p>
+            <a class="last-item" href="{% url 'logout' %}" class="btn btn-primary my-2">Déconnexion</a>
+          </p>
+        {% else %}
+          <p>
+            <a class="last-item" href="{% url 'login' %}" class="btn btn-primary my-2">Connexion</a>
+          </p>
+        {% endif %} 
+        </li>
       </ul>
     </div>
+ 
+    <style>
+      .last-item{
+  font-size: 2rem;
+}
     
+    </style>
     
 
 
@@ -195,16 +211,12 @@
       <img src='/static/imgs/LOGO.png'>
     </img>
   </a>
-  
-  {% if request.user.is_authenticated %}
-    <p>
-      <a href="{% url 'logout' %}" class="btn btn-primary my-2">Déconnexion</a>
-    </p>
-  {% else %}
-    <p>
-      <a href="{% url 'login' %}" class="btn btn-primary my-2">Connexion</a>
-    </p>
-  {% endif %}
+  <style>
+    .valk{
+      margin: auto ;
+    }
+  </style>
+
   {% if request.user.is_authenticated and user.account.avatar %}
     <div class="miniprofile">
       <img class="miniprofile_img"
@@ -231,10 +243,10 @@
   <button class="stickbutton">Savoir plus</button>
 </nav>
 
-  <main class='containers'>
+  <!-- <main class='containers'>
     <aside class="lang">
       <a href="Lang.html">
         <img src="/static/imgs/drapeau-francais.jpg">
       </img>
     </a>
-  </aside>
+  </aside> -->
